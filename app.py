@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # app.py ───────────────────────────────────────────────────────────────
 """
-IA Dashboards  |  Streamlit one-file solution  |  v2.1 (beautified & bug-fixed)
+IA Dashboards | Streamlit one-file solution | v2.2 (robust & beautified)
 
 ▪ Detailed Explorer – combinatorial slice-and-dice for analysts
 ▪ Executive Overview – KPI cockpit + 12-month city revenue forecast
@@ -14,7 +14,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
-from string import Template                        # << NEW
+import importlib                    # ← for safe statsmodels probe
+from string import Template
 
 from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
@@ -27,41 +28,32 @@ from sklearn.metrics import r2_score, mean_squared_error
 
 # ── Theme colours ─────────────────────────────────────────────────────
 PRIMARY = "#2D6CDF"      # midnight blue
-ACCENT  = "#46B1AB"      # teal
+ACCENT  = "#46B1AB"      # teal accent
 BG_MAIN = "#F5F7FA"      # light grey
 
-# ── Inject CSS safely (no f-string brace issues) ──────────────────────
-CSS_TEMPLATE = Template(r"""
+# ── Inject CSS (via string.Template ⇒ no brace/token errors) ──────────
+CSS = Template(r"""
 <style>
-/* Global background */
-html, body, [data-testid="stApp"] {
-    background-color: $bg;
-}
+html, body, [data-testid="stApp"] { background-color: $bg; }
 /* KPI cards */
 div[data-testid="metric-container"] {
-    background-color: #ffffff;
-    border: 1px solid #E3E6EF;
-    padding: 12px 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background-color:#fff;border:1px solid #E3E6EF;padding:12px 15px;
+  border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.05);
 }
-/* Hide default footer / header */
-footer, header { visibility: hidden; }
 /* Sidebar gradient */
-[data-testid="stSidebar"] > div:first-child {
-    background: linear-gradient(135deg, $primary 0%, $accent 100%);
+[data-testid="stSidebar"]>div:first-child {
+  background:linear-gradient(135deg,$primary 0%,$accent 100%);
 }
+/* Hide default header/footer */
+footer,header {visibility:hidden;}
 </style>
-""")
-st.markdown(
-    CSS_TEMPLATE.substitute(bg=BG_MAIN, primary=PRIMARY, accent=ACCENT),
-    unsafe_allow_html=True,
-)
+""").substitute(bg=BG_MAIN, primary=PRIMARY, accent=ACCENT)
+st.markdown(CSS, unsafe_allow_html=True)
 
 st.set_page_config(page_title="IA Dashboards", layout="wide")
-DATA_PATH = "IA_Shaurya_IAPBL.csv"  # CSV in same folder
+DATA_PATH = "IA_Shaurya_IAPBL.csv"   # keep CSV alongside app.py
 
-# ── Helper functions ──────────────────────────────────────────────────
+# ── Helpers ───────────────────────────────────────────────────────────
 @st.cache_data(show_spinner=False)
 def load_data(path: str) -> pd.DataFrame:
     df = pd.read_csv(path)
@@ -121,7 +113,7 @@ def forecast_city_revenue(df_raw: pd.DataFrame, est):
 # ── Data load ─────────────────────────────────────────────────────────
 df_master = load_data(DATA_PATH)
 
-# ── Sidebar: nav & filters ────────────────────────────────────────────
+# ── Sidebar: nav + filters ────────────────────────────────────────────
 with st.sidebar:
     st.markdown(f"<h2 style='color:white;'>🚀 IA Dashboards</h2>", unsafe_allow_html=True)
     page = st.radio("Select view", ("Detailed Explorer", "Executive Overview"))
@@ -149,7 +141,7 @@ if page == "Detailed Explorer":
     c3.metric("Avg Spend / Cust.", f"₹{flt_df.First_Month_Spend.mean():,.0f}")
     c4.metric("Avg Renewal Prob.", f"{flt_df.Renewal_Probability.mean():.1%}")
 
-    st.markdown("#### Revenue Composition — City > Plan > Cuisine")
+    st.markdown("#### Revenue Composition — City › Plan › Cuisine")
     fig_tree = px.sunburst(
         flt_df,
         path=["City", "Subscription_Plan", "Preferred_Cuisine"],
@@ -166,28 +158,36 @@ if page == "Detailed Explorer":
     cat_cols = flt_df.select_dtypes(exclude="number").columns.tolist()
 
     col1, col2, col3 = st.columns(3)
-    x_var = col1.selectbox("X-axis", num_cols + cat_cols)
-    y_var = col2.selectbox("Y-axis (numeric)", [c for c in num_cols if c != x_var])
+    x_var  = col1.selectbox("X-axis", num_cols + cat_cols)
+    y_var  = col2.selectbox("Y-axis (numeric)", [c for c in num_cols if c != x_var])
     colour = col3.selectbox("Colour / Facet", ["None"] + cat_cols)
 
+    # — SAFE rendering: fall back when statsmodels/scipy unavailable —
+    add_trendline = False
     if colour == "None":
         try:
-            import statsmodels.api as sm  # noqa: F401
-            fig = px.scatter(flt_df, x=x_var, y=y_var, trendline="ols",
-                             template="simple_white",
-                             color_discrete_sequence=[PRIMARY])
-        except ModuleNotFoundError:
-            fig = px.scatter(flt_df, x=x_var, y=y_var,
-                             template="simple_white",
-                             color_discrete_sequence=[PRIMARY])
+            importlib.import_module("statsmodels.api")   # ImportError if missing/broken
+            add_trendline = True
+        except ImportError:
+            add_trendline = False
+
+    if colour == "None":
+        fig = px.scatter(
+            flt_df, x=x_var, y=y_var,
+            trendline="ols" if add_trendline else None,
+            template="simple_white",
+            color_discrete_sequence=[PRIMARY],
+        )
     else:
-        fig = px.box(flt_df, x=colour, y=y_var, points="all",
-                     template="simple_white",
-                     color_discrete_sequence=px.colors.qualitative.Pastel)
+        fig = px.box(
+            flt_df, x=colour, y=y_var, points="all",
+            template="simple_white",
+            color_discrete_sequence=px.colors.qualitative.Pastel,
+        )
     fig.update_layout(margin=dict(t=40, r=10, l=10, b=10))
     st.plotly_chart(fig, use_container_width=True)
 
-    st.caption("Data cached — visuals update instantly as filters change.")
+    st.caption("Data cached — visuals update instantly with every filter.")
 
 # ── Page 2: Executive Overview ────────────────────────────────────────
 else:
@@ -198,7 +198,7 @@ else:
         best_est  = res[best]["best"]
 
     m1, m2, m3 = st.columns(3)
-    m1.metric("Model", best)
+    m1.metric("Chosen Model", best)
     m2.metric("R² (in-sample)", res[best]["R2"])
     m3.metric("RMSE", res[best]["RMSE"])
 
@@ -225,4 +225,4 @@ else:
     st.bar_chart(bar_df.set_index("City"),
                  color=PRIMARY, height=300, use_container_width=True)
 
-    st.caption("Forecast retrains only when global filters change — lightning fast UX.")
+    st.caption("Forecast retrains only when global filters change — lightning-fast UX.")
