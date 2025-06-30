@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 # app.py ───────────────────────────────────────────────────────────────
 """
-IA Dashboards | Streamlit one-file solution | v2.2 (robust & beautified)
+IA Dashboards | Streamlit one-file solution | v2.3
 
 ▪ Detailed Explorer – combinatorial slice-and-dice for analysts
 ▪ Executive Overview – KPI cockpit + 12-month city revenue forecast
+
+Robust to missing statsmodels/scipy and safe DataFrame styling.
 
 Author: Auto-generated for Shaurya (SP Jain MBA ARP)
 """
@@ -14,9 +16,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
-import importlib                    # ← for safe statsmodels probe
+import importlib
 from string import Template
-
 from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
@@ -27,31 +28,25 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score, mean_squared_error
 
 # ── Theme colours ─────────────────────────────────────────────────────
-PRIMARY = "#2D6CDF"      # midnight blue
-ACCENT  = "#46B1AB"      # teal accent
-BG_MAIN = "#F5F7FA"      # light grey
+PRIMARY = "#2D6CDF"
+ACCENT  = "#46B1AB"
+BG_MAIN = "#F5F7FA"
 
-# ── Inject CSS (via string.Template ⇒ no brace/token errors) ──────────
 CSS = Template(r"""
 <style>
-html, body, [data-testid="stApp"] { background-color: $bg; }
-/* KPI cards */
-div[data-testid="metric-container"] {
-  background-color:#fff;border:1px solid #E3E6EF;padding:12px 15px;
-  border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.05);
-}
-/* Sidebar gradient */
-[data-testid="stSidebar"]>div:first-child {
-  background:linear-gradient(135deg,$primary 0%,$accent 100%);
-}
-/* Hide default header/footer */
-footer,header {visibility:hidden;}
+html, body, [data-testid="stApp"]{background-color:$bg;}
+div[data-testid="metric-container"]{
+  background:#fff;border:1px solid #E3E6EF;padding:12px 15px;border-radius:10px;
+  box-shadow:0 2px 4px rgba(0,0,0,0.05);}
+[data-testid="stSidebar"]>div:first-child{
+  background:linear-gradient(135deg,$primary 0%,$accent 100%);}
+footer,header{visibility:hidden;}
 </style>
 """).substitute(bg=BG_MAIN, primary=PRIMARY, accent=ACCENT)
 st.markdown(CSS, unsafe_allow_html=True)
-
 st.set_page_config(page_title="IA Dashboards", layout="wide")
-DATA_PATH = "IA_Shaurya_IAPBL.csv"   # keep CSV alongside app.py
+
+DATA_PATH = "IA_Shaurya_IAPBL.csv"   # keep CSV beside app.py
 
 # ── Helpers ───────────────────────────────────────────────────────────
 @st.cache_data(show_spinner=False)
@@ -73,9 +68,9 @@ def train_models(df: pd.DataFrame):
     )
 
     models = {
-        "K-NN":          KNeighborsRegressor(),
-        "Decision-Tree": DecisionTreeRegressor(random_state=42),
-        "Random-Forest": RandomForestRegressor(random_state=42),
+        "K-NN":           KNeighborsRegressor(),
+        "Decision-Tree":  DecisionTreeRegressor(random_state=42),
+        "Random-Forest":  RandomForestRegressor(random_state=42),
     }
     params = {
         "K-NN":          {"model__n_neighbors": [3, 5, 7]},
@@ -115,7 +110,8 @@ df_master = load_data(DATA_PATH)
 
 # ── Sidebar: nav + filters ────────────────────────────────────────────
 with st.sidebar:
-    st.markdown(f"<h2 style='color:white;'>🚀 IA Dashboards</h2>", unsafe_allow_html=True)
+    st.markdown(f"<h2 style='color:white;'>🚀 IA Dashboards</h2>",
+                unsafe_allow_html=True)
     page = st.radio("Select view", ("Detailed Explorer", "Executive Overview"))
 
     with st.expander("Global Filters", expanded=False):
@@ -159,22 +155,23 @@ if page == "Detailed Explorer":
 
     col1, col2, col3 = st.columns(3)
     x_var  = col1.selectbox("X-axis", num_cols + cat_cols)
-    y_var  = col2.selectbox("Y-axis (numeric)", [c for c in num_cols if c != x_var])
+    y_var  = col2.selectbox("Y-axis (numeric)",
+                            [c for c in num_cols if c != x_var])
     colour = col3.selectbox("Colour / Facet", ["None"] + cat_cols)
 
-    # — SAFE rendering: fall back when statsmodels/scipy unavailable —
-    add_trendline = False
+    # — SAFE trendline logic —
+    add_trend = False
     if colour == "None":
         try:
-            importlib.import_module("statsmodels.api")   # ImportError if missing/broken
-            add_trendline = True
+            importlib.import_module("statsmodels.api")
+            add_trend = True
         except ImportError:
-            add_trendline = False
+            add_trend = False
 
     if colour == "None":
         fig = px.scatter(
             flt_df, x=x_var, y=y_var,
-            trendline="ols" if add_trendline else None,
+            trendline="ols" if add_trend else None,
             template="simple_white",
             color_discrete_sequence=[PRIMARY],
         )
@@ -186,7 +183,6 @@ if page == "Detailed Explorer":
         )
     fig.update_layout(margin=dict(t=40, r=10, l=10, b=10))
     st.plotly_chart(fig, use_container_width=True)
-
     st.caption("Data cached — visuals update instantly with every filter.")
 
 # ── Page 2: Executive Overview ────────────────────────────────────────
@@ -205,8 +201,17 @@ else:
     st.divider()
     st.subheader("📈 12-Month Revenue Forecast by City")
     city_tbl = forecast_city_revenue(flt_df, best_est)
-    st.dataframe(city_tbl.style.format("₹{:,.0f}"),
-                 use_container_width=True, height=300)
+
+    # Format only numeric columns to avoid ValueError
+    num_cols_tbl = [c for c in city_tbl.columns if c != "City"]
+    fmt_dict = {c: "₹{:,.0f}".format for c in num_cols_tbl}
+    styled = city_tbl.style.format(fmt_dict)
+
+    st.dataframe(
+        styled.set_properties(**{"text-align": "right"}),
+        use_container_width=True,
+        height=300,
+    )
 
     fig_map = px.imshow(
         city_tbl.set_index("City"),
