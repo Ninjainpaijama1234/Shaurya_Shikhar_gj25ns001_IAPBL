@@ -1,0 +1,501 @@
+Customer_ID,Age,Gender,City,Monthly_Income,Order_Frequency,Preferred_Cuisine,Subscription_Plan,Marketing_Channel,Customer_Acquisition_Cost,First_Month_Spend,Renewal_Probability
+C001,28,Female,Delhi,89813,4,Continental,Standard,Search,786,4279,0.9
+C002,41,Female,Pune,82198,6,Asian,Basic,Search,361,3447,0.49
+C003,36,Female,Chennai,53820,6,Continental,Basic,Social Media,660,5504,0.25
+C004,32,Male,Bangalore,69070,7,Asian,Premium,Search,455,2104,0.21
+C005,29,Female,Chennai,114768,6,Asian,Basic,Search,434,3221,0.82
+C006,42,Female,Mumbai,56122,4,Indian,Premium,Email,631,4072,0.59
+C007,28,Female,Chennai,118543,4,Continental,Basic,Email,745,4146,0.78
+C008,40,Female,Mumbai,86786,6,Asian,Standard,Social Media,628,2987,0.38
+C009,44,Male,Chennai,51737,4,Asian,Standard,Search,296,4594,0.46
+C010,32,Female,Mumbai,81062,7,Indian,Standard,Social Media,800,5416,0.22
+C011,32,Male,Delhi,99237,3,Indian,Standard,Search,777,2317,0.92
+C012,42,Female,Pune,96571,7,Continental,Basic,Word-of-Mouth,753,5084,0.7
+C013,25,Female,Pune,70510,7,Asian,Basic,Word-of-Mouth,271,6034,0.9
+C014,29,Female,Hyderabad,64426,4,Continental,Standard,Social Media,462,2258,0.4
+C015,24,Female,Pune,82265,3,Asian,Standard,Social Media,559,5608,0.66
+C016,43,Female,Bangalore,62850,4,Continental,Premium,Social Media,910,6124,0.71
+C017,42,Female,Chennai,111150,5,Indian,Premium,Email,521,5834,0.44
+C018,23,Male,Hyderabad,119910,4,Asian,Standard,Email,820,5364,0.84
+C019,33,Female,Bangalore,97375,4,Continental,Standard,Email,451,4589,0.91
+C020,27,Female,Bangalore,80435,4,Indian,Standard,Social Media,281,6237,0.86
+C021,23,Male,Mumbai,102132,3,Indian,Basic,Search,692,3704,0.75
+C022,42,Female,Pune,123945,4,Continental,Premium,Word-of-Mouth,411,2855,0.41
+C023,22,Male,Delhi,47983,3,Asian,Standard,Social Media,503,4082,0.41
+C024,33,Female,Delhi,65662,6,Asian,Standard,Email,770,1983,0.92
+C025,43,Male,Hyderabad,68510,5,Indian,Basic,Email,900,4207,0.21
+C026,33,Male,Delhi,123187,3,Asian,Standard,Social Media,729,1793,0.74
+C027,38,Male,Chennai,85998,6,Asian,Standard,Social Media,259,5407,0.73
+C028,31,Male,Delhi,101846,3,Asian,Premium,Email,754,5319,0.67
+C029,37,Male,Hyderabad,51640,3,Indian,Standard,Search,809,4181,0.94
+C030,36,Female,Delhi,89547,5,Continental,Standard,Email,685,4165,0.43
+C031,36,Male,Chennai,99620,7,Asian,Premium,Email,360,4363,0.45
+C032,40,Male,Mumbai,60317,7,Indian,Basic,Social Media,402,4398,0.26
+C033,33,Female,Hyderabad,52564,3,Indian,Standard,Search,884,3939,0.53
+C034,44,Male,Mumbai,72345,4,Continental,Basic,Email,351,5006,0.4
+C035,41,Female,Mumbai,124273,6,Asian,Standard,Email,440,2331,0.46
+C036,24,Female,Mumbai,119859,4,Asian,Premium,Word-of-Mouth,812,4472,0.83
+C037,26,Male,Bangalore,119038,4,Continental,Basic,Social Media,330,4720,0.9
+C038,40,Female,Pune,97393,3,Continental,Premium,Word-of-Mouth,738,6380,0.34
+C039,28,Female,Bangalore,111081,3,Indian,Basic,Word-of-Mouth,337,5777,0.48
+C040,42,Female,Pune,74430,3,Indian,Premium,Email,443,4204,0.9
+C041,30,Male,Mumbai,120532,3,Continental,Standard,Social Media,353,3982,0.25
+C042,28,Male,Hyderabad,72788,7,Asian,Premium,Search,345,2131,0.27
+C043,39,Female,Pune,93543,3,Indian,Basic,Email,672,5916,0.32
+C044,25,Male,Chennai,58919,7,Indian,Premium,Search,447,2234,0.65
+C045,35,Female,Chennai,114346,7,Asian,Standard,Search,250,3369,0.31
+C046,39,Male,Delhi,84974,3,Indian,Standard,Social Media,656,5404,0.93
+C047,30,Female,Pune,61371,5,Asian,Premium,Word-of-Mouth,627,3970,0.54
+C048,42,Male,Hyderabad,90084,6,Asian,Basic,Social Media,416,1602,0.58
+C049,23,Female,Bangalore,74629,4,Asian,Premium,Search,758,1805,0.38
+C050,41,Male,Mumbai,96184,7,Continental,Basic,Email,887,5735,0.55
+C051,36,Male,Delhi,106916,6,Continental,Standard,Search,562,4221,0.7
+C052,28,Female,Chennai,118972,5,Continental,Standard,Email,842,6339,0.76
+C053,33,Male,Bangalore,107187,4,Asian,Basic,Email,667,4490,0.77
+C054,29,Female,Bangalore,57984,4,Asian,Basic,Social Media,930,4793,0.63
+C055,36,Male,Mumbai,78039,7,Continental,Basic,Search,726,4266,0.88
+C056,24,Female,Pune,103606,3,Indian,Standard,Word-of-Mouth,322,4906,0.81
+C057,35,Female,Chennai,55616,5,Asian,Standard,Search,390,2497,0.77
+C058,38,Male,Hyderabad,95072,7,Indian,Standard,Search,831,2685,0.24
+C059,25,Male,Bangalore,69574,5,Indian,Basic,Word-of-Mouth,511,2879,0.21
+C060,39,Male,Mumbai,48430,3,Asian,Basic,Social Media,589,2270,0.36
+C061,29,Female,Hyderabad,57676,3,Asian,Standard,Search,557,3105,0.7
+C062,25,Male,Pune,55816,7,Indian,Basic,Search,494,5175,0.51
+C063,23,Female,Chennai,77733,3,Indian,Premium,Email,764,6414,0.5
+C064,27,Female,Pune,47050,6,Continental,Premium,Search,586,3555,0.86
+C065,43,Female,Bangalore,78933,4,Continental,Standard,Word-of-Mouth,824,1849,0.87
+C066,31,Female,Hyderabad,69951,7,Asian,Standard,Email,810,3492,0.88
+C067,25,Female,Hyderabad,77413,5,Continental,Premium,Social Media,325,5039,0.44
+C068,43,Female,Hyderabad,79801,6,Continental,Basic,Email,424,3453,0.72
+C069,39,Male,Bangalore,100619,7,Continental,Basic,Word-of-Mouth,358,4454,0.4
+C070,33,Male,Bangalore,77913,3,Continental,Basic,Word-of-Mouth,432,3103,0.34
+C071,23,Female,Pune,85600,3,Indian,Standard,Email,441,4985,0.34
+C072,31,Male,Delhi,102775,3,Asian,Basic,Social Media,314,5171,0.46
+C073,25,Female,Pune,80400,3,Continental,Standard,Email,723,5392,0.52
+C074,35,Male,Chennai,49494,5,Indian,Premium,Social Media,349,5026,0.82
+C075,37,Male,Mumbai,119691,6,Indian,Premium,Email,793,1643,0.29
+C076,36,Female,Hyderabad,88001,4,Indian,Standard,Word-of-Mouth,377,5212,0.75
+C077,29,Male,Delhi,112364,5,Continental,Basic,Search,701,4218,0.6
+C078,35,Female,Mumbai,90028,5,Continental,Premium,Search,618,6278,0.42
+C079,44,Male,Delhi,82573,4,Asian,Standard,Social Media,292,4763,0.57
+C080,29,Male,Pune,45806,4,Continental,Basic,Social Media,668,2888,0.42
+C081,42,Female,Bangalore,101638,3,Continental,Basic,Social Media,737,4542,0.65
+C082,37,Female,Hyderabad,74757,5,Indian,Premium,Word-of-Mouth,327,1819,0.53
+C083,34,Female,Pune,79636,7,Asian,Standard,Email,519,3525,0.32
+C084,39,Female,Mumbai,93280,4,Continental,Premium,Word-of-Mouth,923,4572,0.29
+C085,36,Female,Mumbai,69262,4,Continental,Premium,Search,564,5113,0.61
+C086,42,Female,Mumbai,107211,6,Indian,Standard,Social Media,417,4048,0.88
+C087,34,Male,Mumbai,99842,7,Indian,Standard,Email,588,5071,0.46
+C088,30,Female,Mumbai,101979,7,Continental,Standard,Search,442,4374,0.75
+C089,36,Female,Delhi,83197,4,Asian,Standard,Search,702,2590,0.69
+C090,34,Male,Pune,86844,3,Asian,Standard,Search,532,4546,0.9
+C091,22,Female,Hyderabad,109754,6,Indian,Standard,Word-of-Mouth,585,3412,0.82
+C092,28,Female,Bangalore,79157,7,Indian,Standard,Social Media,639,2403,0.62
+C093,30,Female,Bangalore,122129,4,Continental,Premium,Search,774,2089,0.69
+C094,22,Female,Pune,85042,7,Indian,Standard,Social Media,489,5156,0.87
+C095,33,Male,Pune,106665,6,Continental,Standard,Word-of-Mouth,732,3093,0.5
+C096,29,Female,Bangalore,72376,6,Asian,Standard,Search,908,5245,0.45
+C097,32,Female,Bangalore,100554,5,Asian,Standard,Word-of-Mouth,841,4491,0.21
+C098,40,Male,Delhi,59199,4,Continental,Standard,Word-of-Mouth,804,3305,0.82
+C099,38,Male,Chennai,95948,6,Indian,Basic,Social Media,707,5116,0.8
+C100,29,Female,Hyderabad,118781,5,Asian,Standard,Search,338,4940,0.28
+C101,24,Female,Mumbai,117750,5,Indian,Basic,Word-of-Mouth,909,1653,0.63
+C102,24,Female,Chennai,111262,7,Asian,Standard,Search,344,4175,0.55
+C103,22,Male,Pune,91600,7,Continental,Standard,Social Media,701,5191,0.29
+C104,26,Female,Bangalore,121898,5,Continental,Standard,Word-of-Mouth,677,2215,0.94
+C105,31,Male,Chennai,107483,7,Continental,Premium,Social Media,400,2554,0.36
+C106,28,Female,Hyderabad,63297,6,Asian,Standard,Search,763,4033,0.25
+C107,30,Female,Pune,75448,3,Indian,Standard,Search,625,3229,0.65
+C108,28,Female,Mumbai,71172,6,Indian,Standard,Social Media,271,4381,0.75
+C109,30,Female,Mumbai,87874,5,Indian,Standard,Email,562,2249,0.22
+C110,29,Male,Hyderabad,52657,5,Asian,Basic,Word-of-Mouth,768,3947,0.69
+C111,33,Male,Hyderabad,70425,6,Asian,Basic,Search,455,6090,0.6
+C112,23,Male,Bangalore,71685,7,Asian,Standard,Search,624,4878,0.28
+C113,22,Female,Mumbai,69578,7,Asian,Standard,Word-of-Mouth,700,4240,0.33
+C114,37,Female,Pune,73831,5,Asian,Basic,Social Media,875,5401,0.63
+C115,44,Male,Chennai,52906,4,Indian,Basic,Social Media,844,4161,0.42
+C116,44,Male,Pune,106413,7,Asian,Basic,Social Media,428,4849,0.9
+C117,26,Female,Delhi,99028,6,Asian,Premium,Email,459,1970,0.81
+C118,24,Male,Delhi,52287,7,Indian,Standard,Email,749,2457,0.94
+C119,33,Female,Hyderabad,78660,6,Asian,Standard,Search,713,6486,0.39
+C120,29,Female,Bangalore,120758,5,Indian,Basic,Social Media,373,6353,0.93
+C121,43,Male,Delhi,105504,7,Indian,Standard,Word-of-Mouth,362,1983,0.52
+C122,24,Male,Mumbai,104720,6,Continental,Basic,Search,261,5477,0.46
+C123,22,Female,Pune,79701,5,Continental,Basic,Word-of-Mouth,375,4152,0.24
+C124,24,Female,Pune,62674,4,Continental,Standard,Search,814,5934,0.24
+C125,26,Female,Hyderabad,68874,6,Continental,Basic,Email,580,5890,0.72
+C126,36,Male,Chennai,88642,4,Asian,Basic,Search,532,4325,0.54
+C127,35,Female,Hyderabad,110160,4,Continental,Basic,Email,389,5634,0.37
+C128,24,Female,Chennai,62602,3,Indian,Basic,Search,650,4893,0.66
+C129,22,Female,Hyderabad,70931,7,Asian,Basic,Social Media,346,5851,0.39
+C130,26,Female,Hyderabad,74192,6,Continental,Standard,Word-of-Mouth,766,5588,0.63
+C131,44,Female,Hyderabad,91542,4,Indian,Premium,Social Media,818,2522,0.47
+C132,35,Female,Chennai,87520,3,Asian,Standard,Search,318,4515,0.82
+C133,28,Female,Chennai,109772,5,Asian,Standard,Search,367,4550,0.82
+C134,30,Female,Hyderabad,103762,6,Continental,Basic,Search,308,4646,0.56
+C135,36,Female,Delhi,95106,4,Asian,Premium,Email,282,2574,0.46
+C136,36,Male,Bangalore,70559,7,Indian,Standard,Word-of-Mouth,567,2830,0.47
+C137,31,Male,Bangalore,78742,3,Asian,Basic,Word-of-Mouth,299,4035,0.8
+C138,34,Female,Bangalore,114669,4,Indian,Standard,Search,738,3414,0.45
+C139,40,Female,Chennai,66754,7,Asian,Basic,Search,268,4534,0.36
+C140,28,Female,Chennai,48972,4,Continental,Standard,Email,446,2963,0.26
+C141,38,Male,Delhi,115831,6,Indian,Standard,Social Media,699,5540,0.55
+C142,41,Female,Bangalore,86873,6,Asian,Premium,Social Media,808,1803,0.56
+C143,25,Male,Bangalore,54903,6,Asian,Standard,Word-of-Mouth,928,1760,0.83
+C144,26,Female,Hyderabad,48020,3,Asian,Standard,Email,701,6087,0.37
+C145,44,Male,Chennai,86755,6,Indian,Premium,Search,538,2368,0.49
+C146,28,Female,Bangalore,90648,7,Indian,Basic,Word-of-Mouth,390,5348,0.81
+C147,34,Male,Pune,54516,4,Indian,Basic,Email,333,4181,0.82
+C148,36,Female,Delhi,47396,5,Continental,Standard,Social Media,943,2693,0.49
+C149,32,Male,Pune,64129,7,Continental,Standard,Email,640,6100,0.54
+C150,25,Female,Pune,46591,7,Indian,Standard,Social Media,840,2207,0.43
+C151,34,Male,Delhi,56303,6,Asian,Premium,Email,464,3140,0.9
+C152,28,Male,Pune,75561,3,Continental,Standard,Word-of-Mouth,775,4475,0.29
+C153,40,Male,Bangalore,116719,4,Indian,Standard,Social Media,464,4791,0.9
+C154,43,Female,Chennai,52314,3,Asian,Standard,Word-of-Mouth,652,3437,0.71
+C155,23,Male,Delhi,64623,4,Continental,Premium,Word-of-Mouth,377,2289,0.6
+C156,31,Female,Hyderabad,112675,4,Asian,Premium,Social Media,726,5359,0.22
+C157,34,Female,Pune,110082,3,Asian,Premium,Social Media,653,4549,0.56
+C158,42,Male,Delhi,78130,7,Asian,Basic,Search,278,3703,0.51
+C159,27,Male,Mumbai,96756,4,Asian,Standard,Search,587,1965,0.32
+C160,33,Male,Mumbai,71292,3,Continental,Basic,Search,610,5175,0.69
+C161,33,Female,Chennai,114274,4,Continental,Basic,Word-of-Mouth,818,6150,0.93
+C162,41,Male,Bangalore,47469,5,Continental,Basic,Word-of-Mouth,641,5799,0.62
+C163,32,Female,Chennai,98947,7,Indian,Standard,Search,467,5772,0.74
+C164,44,Male,Chennai,67534,6,Continental,Standard,Word-of-Mouth,823,5925,0.25
+C165,28,Female,Chennai,108620,4,Asian,Basic,Word-of-Mouth,918,3978,0.51
+C166,22,Male,Chennai,93874,5,Continental,Standard,Social Media,451,2805,0.29
+C167,22,Female,Hyderabad,94708,6,Asian,Standard,Social Media,266,5439,0.66
+C168,41,Female,Hyderabad,119553,6,Indian,Standard,Word-of-Mouth,571,4335,0.9
+C169,34,Male,Delhi,113344,4,Asian,Basic,Search,767,4947,0.7
+C170,30,Female,Mumbai,94138,3,Asian,Standard,Email,819,3275,0.26
+C171,24,Female,Chennai,99302,4,Asian,Standard,Search,574,1898,0.47
+C172,28,Male,Delhi,92638,5,Indian,Basic,Email,661,2556,0.61
+C173,27,Male,Mumbai,123249,6,Continental,Basic,Search,567,2714,0.5
+C174,29,Female,Pune,47719,4,Continental,Standard,Social Media,930,4105,0.83
+C175,30,Female,Bangalore,67890,3,Indian,Premium,Word-of-Mouth,331,3074,0.81
+C176,26,Female,Hyderabad,122236,4,Asian,Standard,Word-of-Mouth,723,6060,0.66
+C177,22,Male,Pune,81509,7,Continental,Standard,Social Media,717,6046,0.48
+C178,40,Male,Mumbai,87534,3,Indian,Standard,Email,674,5326,0.39
+C179,31,Female,Pune,63787,5,Continental,Standard,Email,938,5071,0.28
+C180,33,Female,Bangalore,93845,6,Indian,Basic,Email,453,4428,0.47
+C181,36,Female,Mumbai,102932,4,Asian,Standard,Social Media,832,4450,0.51
+C182,43,Female,Pune,78062,3,Continental,Premium,Email,636,4106,0.71
+C183,30,Male,Hyderabad,120713,7,Indian,Standard,Social Media,347,5370,0.69
+C184,41,Female,Hyderabad,105461,3,Continental,Premium,Search,594,4564,0.25
+C185,38,Female,Delhi,120418,7,Continental,Standard,Search,457,6194,0.5
+C186,38,Female,Pune,111672,5,Continental,Basic,Social Media,763,2549,0.34
+C187,41,Male,Chennai,79832,6,Continental,Premium,Word-of-Mouth,885,6203,0.32
+C188,33,Female,Pune,76966,5,Indian,Basic,Search,835,4450,0.82
+C189,28,Female,Mumbai,117545,4,Asian,Standard,Email,415,1765,0.23
+C190,23,Female,Mumbai,57987,3,Indian,Basic,Social Media,271,5086,0.51
+C191,24,Female,Pune,82311,7,Indian,Basic,Email,403,4109,0.33
+C192,38,Male,Bangalore,76575,7,Indian,Standard,Email,688,2519,0.86
+C193,26,Male,Hyderabad,108852,3,Asian,Basic,Word-of-Mouth,544,1713,0.62
+C194,38,Female,Mumbai,46007,3,Continental,Standard,Email,468,5104,0.37
+C195,38,Female,Hyderabad,115981,4,Continental,Standard,Word-of-Mouth,918,2591,0.58
+C196,38,Female,Mumbai,121242,5,Continental,Basic,Search,744,5439,0.75
+C197,23,Male,Delhi,92517,7,Asian,Basic,Social Media,479,2858,0.92
+C198,23,Male,Chennai,74257,4,Continental,Standard,Email,269,5026,0.37
+C199,43,Male,Mumbai,87207,5,Asian,Standard,Social Media,802,2114,0.86
+C200,44,Male,Hyderabad,58281,4,Continental,Standard,Email,397,6404,0.9
+C201,26,Male,Delhi,106246,7,Continental,Standard,Social Media,357,4796,0.89
+C202,22,Male,Mumbai,46435,3,Indian,Premium,Email,652,6034,0.68
+C203,22,Male,Bangalore,71660,3,Asian,Standard,Email,845,4184,0.67
+C204,40,Female,Chennai,50084,5,Indian,Standard,Email,732,1667,0.5
+C205,23,Female,Mumbai,58507,6,Indian,Standard,Email,616,3196,0.76
+C206,42,Male,Delhi,117595,5,Indian,Basic,Email,663,6078,0.6
+C207,33,Female,Bangalore,90539,6,Asian,Standard,Email,558,1618,0.71
+C208,27,Female,Pune,52491,4,Asian,Standard,Email,383,4330,0.52
+C209,44,Female,Delhi,95192,4,Continental,Standard,Email,532,5121,0.75
+C210,25,Male,Delhi,108888,7,Indian,Standard,Email,322,2172,0.82
+C211,44,Female,Bangalore,118609,6,Continental,Premium,Social Media,730,3858,0.31
+C212,32,Male,Delhi,54077,7,Indian,Premium,Word-of-Mouth,601,4502,0.82
+C213,38,Female,Bangalore,65953,3,Asian,Premium,Email,809,2250,0.61
+C214,27,Female,Mumbai,121919,6,Asian,Standard,Word-of-Mouth,575,4187,0.83
+C215,26,Female,Bangalore,112889,5,Asian,Standard,Email,692,4862,0.52
+C216,41,Female,Bangalore,68821,3,Indian,Standard,Email,349,2938,0.48
+C217,23,Female,Chennai,82567,3,Asian,Standard,Social Media,308,5234,0.89
+C218,27,Male,Bangalore,69860,5,Indian,Standard,Search,757,4427,0.39
+C219,43,Male,Bangalore,66195,3,Continental,Standard,Search,507,3817,0.83
+C220,32,Female,Pune,122475,6,Indian,Standard,Social Media,662,5139,0.56
+C221,37,Male,Mumbai,66427,7,Continental,Standard,Word-of-Mouth,701,2637,0.59
+C222,37,Female,Chennai,72083,3,Indian,Basic,Search,314,5983,0.43
+C223,22,Male,Pune,102372,6,Continental,Standard,Social Media,844,5578,0.63
+C224,30,Female,Hyderabad,89064,4,Asian,Basic,Social Media,403,4561,0.44
+C225,27,Female,Mumbai,52813,6,Continental,Premium,Search,515,4826,0.23
+C226,37,Male,Mumbai,76598,7,Asian,Standard,Word-of-Mouth,328,2698,0.4
+C227,24,Female,Hyderabad,72082,6,Asian,Basic,Social Media,564,3924,0.2
+C228,41,Male,Bangalore,74241,5,Continental,Basic,Email,911,2539,0.93
+C229,25,Female,Pune,89569,7,Indian,Standard,Word-of-Mouth,809,5316,0.92
+C230,40,Female,Delhi,56745,4,Indian,Standard,Word-of-Mouth,497,5014,0.5
+C231,24,Male,Chennai,71029,5,Indian,Standard,Search,859,3048,0.75
+C232,40,Female,Delhi,58025,6,Indian,Basic,Search,663,2170,0.46
+C233,41,Female,Hyderabad,59288,7,Indian,Standard,Email,274,4504,0.7
+C234,28,Female,Mumbai,51540,4,Asian,Standard,Social Media,533,4105,0.8
+C235,41,Male,Mumbai,113878,5,Indian,Standard,Search,698,2517,0.91
+C236,30,Male,Chennai,86846,4,Asian,Standard,Search,550,3474,0.5
+C237,22,Male,Mumbai,120932,6,Asian,Standard,Word-of-Mouth,317,3278,0.79
+C238,29,Female,Mumbai,62482,4,Asian,Basic,Search,256,2215,0.4
+C239,28,Male,Chennai,68411,3,Continental,Premium,Search,386,6101,0.94
+C240,39,Female,Pune,95975,5,Continental,Standard,Search,413,3349,0.22
+C241,29,Female,Pune,105545,4,Asian,Standard,Search,332,5425,0.65
+C242,22,Male,Chennai,123797,6,Continental,Basic,Word-of-Mouth,899,5788,0.69
+C243,32,Male,Hyderabad,97307,6,Indian,Standard,Email,669,4077,0.72
+C244,39,Female,Mumbai,48093,4,Indian,Basic,Email,322,6349,0.29
+C245,44,Female,Mumbai,122258,6,Asian,Standard,Social Media,486,5105,0.9
+C246,31,Male,Hyderabad,67042,7,Indian,Premium,Search,295,5075,0.34
+C247,24,Male,Pune,97930,7,Asian,Standard,Word-of-Mouth,867,6129,0.67
+C248,28,Female,Bangalore,89413,7,Asian,Basic,Social Media,511,2735,0.37
+C249,37,Male,Bangalore,78756,3,Indian,Basic,Social Media,425,5600,0.43
+C250,37,Female,Bangalore,98268,4,Continental,Standard,Email,415,1974,0.61
+C251,41,Female,Pune,84214,3,Indian,Basic,Word-of-Mouth,906,1806,0.51
+C252,38,Male,Pune,73602,6,Indian,Basic,Word-of-Mouth,619,6475,0.32
+C253,23,Female,Hyderabad,98331,3,Asian,Standard,Word-of-Mouth,303,2919,0.33
+C254,22,Male,Mumbai,93901,6,Asian,Standard,Email,939,2741,0.51
+C255,37,Male,Hyderabad,108416,6,Asian,Basic,Email,668,6227,0.77
+C256,33,Male,Hyderabad,77196,5,Asian,Premium,Email,756,4290,0.87
+C257,26,Female,Pune,50626,7,Continental,Basic,Email,590,4855,0.26
+C258,26,Female,Bangalore,52424,6,Continental,Premium,Email,376,1689,0.49
+C259,44,Female,Delhi,57857,5,Continental,Standard,Search,658,5708,0.28
+C260,30,Male,Mumbai,64982,7,Asian,Premium,Search,616,4620,0.21
+C261,30,Male,Pune,121961,6,Asian,Standard,Word-of-Mouth,520,3457,0.7
+C262,24,Female,Bangalore,46980,6,Asian,Premium,Social Media,893,2404,0.65
+C263,40,Male,Delhi,93290,3,Continental,Premium,Word-of-Mouth,854,2544,0.32
+C264,37,Female,Delhi,71431,3,Asian,Basic,Social Media,628,4389,0.38
+C265,37,Male,Pune,71385,7,Indian,Premium,Email,322,5475,0.22
+C266,24,Female,Chennai,83158,6,Indian,Standard,Social Media,497,3210,0.83
+C267,41,Male,Mumbai,68019,4,Asian,Standard,Word-of-Mouth,292,4523,0.93
+C268,43,Male,Delhi,63639,3,Indian,Standard,Word-of-Mouth,626,5482,0.3
+C269,22,Female,Pune,66563,7,Indian,Standard,Social Media,290,4821,0.37
+C270,41,Male,Pune,84341,6,Continental,Basic,Search,419,5991,0.85
+C271,32,Male,Bangalore,50776,6,Asian,Standard,Email,461,6335,0.89
+C272,38,Female,Chennai,81444,4,Asian,Standard,Email,742,3987,0.51
+C273,29,Female,Mumbai,113916,7,Continental,Standard,Word-of-Mouth,929,6323,0.24
+C274,25,Male,Hyderabad,53711,6,Indian,Premium,Search,288,2541,0.23
+C275,27,Female,Bangalore,119318,3,Indian,Standard,Social Media,618,4166,0.63
+C276,29,Female,Delhi,75707,4,Asian,Standard,Email,400,2575,0.49
+C277,41,Female,Delhi,84110,7,Indian,Basic,Search,360,2554,0.22
+C278,24,Female,Bangalore,106788,4,Continental,Basic,Email,729,2862,0.64
+C279,37,Female,Pune,83827,3,Continental,Basic,Search,685,2543,0.21
+C280,24,Male,Delhi,50655,7,Asian,Standard,Search,296,3802,0.79
+C281,39,Male,Chennai,89859,4,Continental,Basic,Word-of-Mouth,824,4927,0.43
+C282,35,Female,Mumbai,98625,5,Continental,Premium,Email,615,5874,0.23
+C283,39,Male,Chennai,97098,3,Asian,Standard,Social Media,318,3859,0.64
+C284,23,Female,Delhi,60251,3,Continental,Standard,Word-of-Mouth,548,3428,0.5
+C285,43,Male,Hyderabad,45526,3,Continental,Standard,Word-of-Mouth,545,2857,0.93
+C286,24,Female,Mumbai,113760,5,Continental,Basic,Social Media,452,2064,0.61
+C287,37,Female,Mumbai,92837,5,Indian,Standard,Word-of-Mouth,310,4894,0.41
+C288,30,Male,Bangalore,56536,6,Asian,Standard,Search,563,2830,0.73
+C289,25,Male,Bangalore,73541,4,Asian,Standard,Search,410,4254,0.4
+C290,22,Male,Hyderabad,124083,6,Asian,Standard,Email,580,2484,0.88
+C291,25,Male,Pune,96027,4,Indian,Premium,Email,777,5405,0.48
+C292,22,Male,Mumbai,79531,5,Indian,Premium,Social Media,587,5456,0.61
+C293,35,Male,Hyderabad,53712,5,Asian,Standard,Email,855,4735,0.24
+C294,42,Male,Bangalore,110455,6,Indian,Standard,Search,553,2524,0.52
+C295,37,Male,Bangalore,119744,7,Asian,Standard,Social Media,752,6189,0.82
+C296,41,Male,Mumbai,50109,6,Indian,Basic,Social Media,899,3146,0.8
+C297,29,Female,Chennai,94268,4,Continental,Standard,Email,587,2694,0.37
+C298,28,Female,Delhi,99615,6,Continental,Basic,Search,799,4011,0.37
+C299,24,Male,Bangalore,74759,3,Asian,Standard,Social Media,888,4217,0.81
+C300,38,Male,Pune,105112,4,Indian,Standard,Search,524,2362,0.9
+C301,22,Male,Pune,71589,4,Indian,Basic,Search,413,3923,0.27
+C302,37,Female,Bangalore,75015,7,Continental,Premium,Search,692,5745,0.54
+C303,33,Female,Chennai,74009,5,Continental,Premium,Email,568,4375,0.45
+C304,40,Female,Chennai,107046,4,Indian,Standard,Word-of-Mouth,838,6259,0.85
+C305,43,Female,Hyderabad,71143,5,Indian,Standard,Word-of-Mouth,753,6478,0.26
+C306,44,Female,Pune,51154,6,Indian,Premium,Social Media,935,4755,0.36
+C307,43,Female,Hyderabad,66804,3,Indian,Basic,Search,636,5570,0.76
+C308,35,Female,Pune,86688,7,Indian,Standard,Email,852,3640,0.24
+C309,27,Male,Delhi,109288,5,Indian,Basic,Search,940,2183,0.57
+C310,27,Male,Delhi,96195,4,Asian,Standard,Search,743,5931,0.53
+C311,34,Male,Mumbai,65581,5,Indian,Basic,Email,739,3703,0.45
+C312,40,Male,Hyderabad,97648,4,Continental,Premium,Word-of-Mouth,322,3542,0.5
+C313,43,Female,Bangalore,75087,5,Asian,Premium,Search,758,6055,0.6
+C314,29,Male,Hyderabad,94930,4,Indian,Basic,Search,639,1709,0.32
+C315,23,Female,Bangalore,77981,6,Continental,Standard,Word-of-Mouth,868,1791,0.63
+C316,42,Male,Chennai,114298,4,Asian,Premium,Email,544,2503,0.8
+C317,22,Male,Hyderabad,91167,4,Continental,Standard,Social Media,618,2461,0.77
+C318,36,Female,Chennai,120304,3,Indian,Premium,Word-of-Mouth,943,2683,0.32
+C319,22,Male,Delhi,88408,4,Indian,Standard,Social Media,798,2249,0.31
+C320,26,Female,Delhi,84499,3,Indian,Standard,Social Media,898,5734,0.4
+C321,37,Male,Mumbai,97269,7,Indian,Basic,Word-of-Mouth,817,5211,0.47
+C322,40,Male,Hyderabad,83559,3,Asian,Basic,Search,436,2236,0.51
+C323,25,Male,Chennai,119319,6,Asian,Standard,Social Media,694,2636,0.71
+C324,24,Male,Bangalore,93787,3,Continental,Standard,Social Media,819,5731,0.24
+C325,38,Female,Delhi,80488,7,Indian,Standard,Email,612,3748,0.23
+C326,38,Male,Delhi,119441,6,Continental,Standard,Search,372,5465,0.49
+C327,33,Female,Bangalore,119663,5,Asian,Standard,Social Media,437,4757,0.72
+C328,35,Male,Chennai,67431,5,Indian,Premium,Email,929,5187,0.35
+C329,42,Male,Chennai,106681,3,Indian,Premium,Search,669,4894,0.68
+C330,27,Female,Hyderabad,108483,3,Asian,Standard,Word-of-Mouth,875,5861,0.39
+C331,24,Female,Hyderabad,94153,7,Asian,Premium,Word-of-Mouth,501,4030,0.86
+C332,30,Male,Pune,51368,7,Asian,Standard,Email,868,3479,0.87
+C333,26,Female,Pune,72424,4,Asian,Standard,Word-of-Mouth,798,5566,0.42
+C334,38,Male,Mumbai,90004,7,Asian,Premium,Social Media,584,5313,0.37
+C335,35,Female,Delhi,101985,4,Indian,Basic,Search,341,5726,0.51
+C336,42,Male,Hyderabad,95069,6,Asian,Basic,Social Media,779,5706,0.38
+C337,24,Male,Chennai,97326,3,Indian,Premium,Social Media,312,3611,0.7
+C338,22,Male,Bangalore,68398,6,Indian,Standard,Word-of-Mouth,911,4973,0.82
+C339,41,Male,Chennai,95861,7,Asian,Premium,Social Media,761,3743,0.7
+C340,42,Male,Delhi,120897,6,Asian,Premium,Word-of-Mouth,388,4100,0.82
+C341,44,Male,Pune,113577,6,Indian,Basic,Search,947,6181,0.5
+C342,22,Male,Chennai,110641,6,Asian,Premium,Search,434,2889,0.32
+C343,24,Male,Mumbai,54078,7,Asian,Standard,Social Media,454,3047,0.75
+C344,39,Male,Delhi,70003,6,Asian,Standard,Email,463,4799,0.47
+C345,31,Male,Pune,107768,4,Continental,Standard,Word-of-Mouth,505,3543,0.7
+C346,43,Female,Bangalore,96047,7,Indian,Premium,Word-of-Mouth,384,4783,0.4
+C347,24,Male,Pune,116626,6,Continental,Basic,Social Media,822,4816,0.26
+C348,29,Male,Mumbai,102660,7,Asian,Standard,Word-of-Mouth,337,4736,0.94
+C349,35,Male,Delhi,94786,5,Continental,Standard,Word-of-Mouth,456,4918,0.32
+C350,39,Male,Bangalore,46925,4,Asian,Standard,Email,378,4382,0.94
+C351,36,Male,Mumbai,71015,6,Continental,Standard,Email,252,2590,0.93
+C352,43,Female,Pune,78320,5,Asian,Basic,Social Media,370,3753,0.8
+C353,44,Male,Mumbai,109881,5,Continental,Basic,Email,634,1825,0.69
+C354,23,Female,Delhi,71289,7,Continental,Standard,Social Media,863,2376,0.63
+C355,31,Male,Hyderabad,48389,5,Continental,Premium,Search,287,4437,0.85
+C356,23,Male,Mumbai,70683,4,Indian,Basic,Social Media,590,2287,0.42
+C357,38,Male,Mumbai,58629,4,Continental,Basic,Search,894,2129,0.55
+C358,29,Male,Pune,106550,3,Indian,Premium,Social Media,270,5042,0.66
+C359,22,Female,Pune,69826,4,Asian,Basic,Word-of-Mouth,491,3753,0.51
+C360,30,Female,Bangalore,71630,5,Continental,Premium,Email,704,2894,0.52
+C361,32,Male,Pune,91163,4,Asian,Standard,Search,870,3126,0.45
+C362,43,Female,Chennai,111435,7,Asian,Premium,Social Media,552,6374,0.62
+C363,37,Male,Delhi,56653,3,Continental,Basic,Email,845,4496,0.84
+C364,28,Female,Delhi,72961,5,Indian,Basic,Social Media,844,4703,0.35
+C365,31,Male,Hyderabad,119137,3,Continental,Standard,Email,318,4040,0.9
+C366,44,Male,Hyderabad,78662,5,Asian,Premium,Email,378,5735,0.72
+C367,24,Male,Delhi,101446,7,Asian,Standard,Social Media,445,5402,0.82
+C368,39,Female,Hyderabad,66288,3,Continental,Basic,Search,389,2444,0.62
+C369,34,Female,Bangalore,81877,6,Indian,Standard,Search,693,2046,0.78
+C370,28,Female,Pune,60313,5,Indian,Standard,Word-of-Mouth,532,5515,0.21
+C371,25,Male,Delhi,117715,6,Asian,Standard,Email,561,4709,0.81
+C372,34,Female,Hyderabad,55326,3,Asian,Standard,Word-of-Mouth,784,2834,0.23
+C373,41,Female,Delhi,46560,6,Indian,Premium,Word-of-Mouth,914,1826,0.87
+C374,22,Male,Chennai,124148,6,Continental,Standard,Social Media,526,5743,0.94
+C375,29,Male,Mumbai,71745,3,Asian,Basic,Social Media,310,4559,0.42
+C376,35,Male,Pune,76890,7,Indian,Standard,Social Media,568,3430,0.36
+C377,37,Female,Delhi,65022,6,Asian,Basic,Email,301,5379,0.77
+C378,35,Male,Mumbai,97579,6,Continental,Standard,Social Media,402,1786,0.39
+C379,33,Male,Hyderabad,115316,7,Indian,Standard,Social Media,560,4477,0.85
+C380,40,Male,Mumbai,73380,6,Asian,Basic,Email,793,4135,0.28
+C381,44,Female,Pune,47356,6,Continental,Standard,Email,816,3532,0.29
+C382,36,Male,Delhi,115326,6,Asian,Basic,Search,638,4524,0.93
+C383,23,Female,Chennai,65049,4,Continental,Premium,Social Media,797,2448,0.71
+C384,23,Male,Hyderabad,120717,7,Continental,Premium,Social Media,871,3632,0.84
+C385,44,Male,Delhi,61082,6,Indian,Basic,Social Media,426,2852,0.44
+C386,43,Male,Pune,45661,7,Continental,Premium,Search,611,3481,0.71
+C387,40,Male,Hyderabad,82412,5,Asian,Standard,Social Media,563,1869,0.65
+C388,43,Female,Bangalore,47920,5,Continental,Basic,Search,346,3230,0.65
+C389,43,Male,Mumbai,105315,6,Continental,Basic,Word-of-Mouth,462,6005,0.71
+C390,38,Male,Pune,124561,7,Indian,Standard,Search,386,4803,0.63
+C391,41,Male,Bangalore,53946,7,Continental,Standard,Word-of-Mouth,255,3174,0.52
+C392,31,Male,Delhi,90500,7,Continental,Standard,Social Media,358,4492,0.41
+C393,27,Male,Chennai,61309,4,Asian,Basic,Word-of-Mouth,796,3295,0.78
+C394,36,Male,Hyderabad,100230,5,Indian,Basic,Search,288,4858,0.37
+C395,43,Male,Mumbai,75027,7,Indian,Standard,Email,911,4862,0.72
+C396,32,Female,Hyderabad,117541,7,Indian,Basic,Word-of-Mouth,674,3045,0.37
+C397,26,Female,Delhi,104321,4,Continental,Basic,Word-of-Mouth,879,1819,0.67
+C398,22,Female,Hyderabad,45956,4,Indian,Basic,Social Media,510,1652,0.76
+C399,29,Male,Mumbai,119131,7,Continental,Premium,Search,675,3357,0.36
+C400,42,Female,Delhi,92908,3,Continental,Premium,Word-of-Mouth,336,3266,0.24
+C401,33,Female,Hyderabad,123339,7,Asian,Standard,Word-of-Mouth,714,4385,0.3
+C402,33,Male,Chennai,70963,7,Asian,Premium,Word-of-Mouth,325,2319,0.65
+C403,26,Female,Pune,84443,4,Asian,Standard,Word-of-Mouth,720,2005,0.84
+C404,28,Female,Delhi,84063,4,Asian,Standard,Email,663,3894,0.23
+C405,25,Male,Pune,49703,7,Asian,Basic,Search,706,1671,0.75
+C406,27,Male,Delhi,110128,7,Continental,Standard,Social Media,534,3653,0.46
+C407,34,Male,Chennai,117099,7,Continental,Premium,Social Media,488,2829,0.56
+C408,41,Male,Pune,70849,4,Indian,Standard,Email,926,3167,0.9
+C409,36,Male,Bangalore,76860,7,Continental,Standard,Search,848,5282,0.45
+C410,24,Male,Mumbai,76585,7,Continental,Standard,Word-of-Mouth,902,4553,0.55
+C411,44,Female,Bangalore,67015,6,Asian,Basic,Email,921,6082,0.21
+C412,29,Male,Hyderabad,122539,3,Continental,Premium,Search,807,2298,0.26
+C413,41,Male,Chennai,88585,5,Asian,Standard,Word-of-Mouth,621,2426,0.39
+C414,37,Male,Bangalore,71958,3,Indian,Standard,Email,744,1948,0.22
+C415,34,Female,Delhi,71017,6,Indian,Standard,Search,873,5508,0.67
+C416,39,Female,Hyderabad,121707,5,Continental,Standard,Social Media,294,1907,0.52
+C417,31,Female,Hyderabad,90350,7,Indian,Basic,Social Media,650,5016,0.61
+C418,40,Male,Bangalore,57201,6,Continental,Standard,Search,496,3934,0.33
+C419,38,Male,Bangalore,74426,7,Indian,Basic,Social Media,865,6461,0.42
+C420,40,Male,Chennai,62778,4,Asian,Standard,Search,846,6420,0.7
+C421,44,Male,Mumbai,90241,6,Asian,Premium,Word-of-Mouth,699,4409,0.92
+C422,26,Male,Bangalore,87229,4,Asian,Premium,Search,734,5158,0.24
+C423,42,Male,Bangalore,93364,6,Asian,Standard,Word-of-Mouth,895,6078,0.87
+C424,44,Female,Pune,102056,6,Continental,Standard,Email,869,5077,0.63
+C425,30,Male,Delhi,72490,4,Indian,Basic,Search,267,6220,0.62
+C426,33,Male,Pune,64975,5,Continental,Standard,Email,855,4286,0.58
+C427,42,Male,Pune,71723,3,Asian,Basic,Social Media,911,4585,0.25
+C428,22,Male,Hyderabad,68279,7,Continental,Standard,Word-of-Mouth,538,1875,0.27
+C429,22,Female,Mumbai,123301,6,Indian,Basic,Search,663,4147,0.65
+C430,36,Female,Delhi,56561,7,Continental,Basic,Email,887,4364,0.46
+C431,23,Female,Chennai,111061,4,Indian,Standard,Word-of-Mouth,484,1936,0.89
+C432,43,Male,Chennai,94153,7,Continental,Basic,Word-of-Mouth,665,3573,0.5
+C433,37,Male,Bangalore,78142,4,Indian,Standard,Social Media,748,4579,0.31
+C434,29,Male,Bangalore,71916,7,Indian,Standard,Social Media,883,6176,0.74
+C435,34,Male,Chennai,109324,3,Asian,Basic,Word-of-Mouth,899,5568,0.42
+C436,42,Female,Bangalore,89965,3,Indian,Standard,Word-of-Mouth,364,2510,0.59
+C437,22,Male,Mumbai,49648,3,Asian,Basic,Search,923,3596,0.72
+C438,37,Male,Pune,80133,3,Asian,Basic,Word-of-Mouth,483,4729,0.88
+C439,28,Male,Bangalore,95677,3,Asian,Standard,Search,789,5804,0.79
+C440,26,Female,Hyderabad,115135,3,Continental,Basic,Word-of-Mouth,260,5357,0.71
+C441,43,Male,Bangalore,80046,4,Continental,Premium,Social Media,455,1927,0.71
+C442,44,Male,Delhi,92064,6,Continental,Basic,Search,928,3399,0.91
+C443,24,Female,Mumbai,114350,7,Continental,Basic,Email,496,1914,0.42
+C444,33,Female,Delhi,90893,3,Indian,Standard,Social Media,808,5145,0.2
+C445,37,Male,Delhi,106272,4,Indian,Standard,Search,376,2734,0.4
+C446,40,Male,Hyderabad,112649,4,Continental,Basic,Search,396,4346,0.36
+C447,26,Male,Mumbai,109674,4,Indian,Standard,Email,367,6476,0.7
+C448,43,Female,Mumbai,58760,6,Indian,Basic,Search,631,3120,0.68
+C449,35,Male,Mumbai,66927,7,Asian,Premium,Word-of-Mouth,661,1755,0.65
+C450,26,Male,Mumbai,106367,6,Asian,Standard,Email,913,3324,0.21
+C451,36,Female,Mumbai,57588,5,Asian,Standard,Social Media,833,4943,0.75
+C452,38,Female,Hyderabad,97233,4,Asian,Premium,Social Media,612,2486,0.44
+C453,35,Female,Bangalore,89738,5,Indian,Standard,Word-of-Mouth,758,4673,0.7
+C454,41,Male,Delhi,78397,3,Continental,Premium,Social Media,386,4405,0.62
+C455,26,Male,Mumbai,121367,3,Indian,Standard,Search,424,2321,0.46
+C456,33,Male,Bangalore,116260,6,Indian,Premium,Search,538,2512,0.3
+C457,37,Female,Bangalore,121619,7,Indian,Basic,Word-of-Mouth,730,4957,0.27
+C458,37,Male,Delhi,64816,5,Asian,Standard,Social Media,268,2470,0.82
+C459,42,Male,Hyderabad,87240,7,Asian,Standard,Social Media,444,5708,0.89
+C460,28,Male,Chennai,51276,6,Asian,Standard,Word-of-Mouth,579,2097,0.69
+C461,25,Male,Chennai,124530,3,Continental,Standard,Email,424,3356,0.28
+C462,22,Female,Bangalore,68499,7,Indian,Standard,Social Media,698,2717,0.5
+C463,26,Male,Pune,116635,7,Continental,Basic,Email,603,5009,0.75
+C464,44,Female,Pune,80946,3,Asian,Basic,Social Media,748,4428,0.78
+C465,31,Female,Delhi,100204,5,Continental,Standard,Social Media,390,3247,0.29
+C466,43,Male,Chennai,96886,3,Indian,Standard,Social Media,342,4583,0.2
+C467,26,Female,Bangalore,116652,7,Indian,Premium,Social Media,488,1742,0.73
+C468,25,Male,Hyderabad,60563,5,Asian,Standard,Search,454,4361,0.47
+C469,23,Female,Chennai,54847,5,Asian,Premium,Email,809,5035,0.39
+C470,41,Female,Bangalore,71155,3,Continental,Standard,Email,682,6260,0.21
+C471,31,Female,Bangalore,124671,7,Asian,Basic,Social Media,494,4031,0.61
+C472,40,Male,Mumbai,112278,6,Asian,Basic,Social Media,566,6112,0.84
+C473,22,Male,Hyderabad,63309,7,Indian,Standard,Email,544,3448,0.92
+C474,26,Male,Mumbai,45619,4,Asian,Standard,Search,889,4296,0.62
+C475,34,Male,Delhi,95108,6,Asian,Basic,Word-of-Mouth,531,3317,0.59
+C476,25,Male,Mumbai,79707,5,Indian,Standard,Word-of-Mouth,266,4672,0.26
+C477,37,Male,Mumbai,65337,6,Indian,Premium,Email,320,2667,0.61
+C478,37,Male,Chennai,111504,5,Continental,Standard,Social Media,518,4386,0.48
+C479,44,Male,Pune,92614,5,Asian,Standard,Social Media,574,5391,0.66
+C480,23,Male,Bangalore,45281,6,Indian,Standard,Search,554,2888,0.49
+C481,38,Female,Hyderabad,72420,5,Continental,Basic,Word-of-Mouth,700,5471,0.38
+C482,41,Female,Mumbai,84030,5,Continental,Standard,Search,256,3406,0.27
+C483,33,Male,Hyderabad,46058,4,Asian,Standard,Word-of-Mouth,563,3104,0.44
+C484,39,Male,Pune,121260,7,Asian,Basic,Email,352,4908,0.27
+C485,24,Female,Pune,73404,7,Continental,Standard,Word-of-Mouth,442,4551,0.33
+C486,22,Female,Mumbai,74856,4,Indian,Standard,Search,823,1671,0.94
+C487,22,Male,Delhi,54200,6,Continental,Premium,Search,778,3290,0.53
+C488,40,Female,Mumbai,109178,3,Asian,Premium,Search,420,2944,0.6
+C489,32,Female,Chennai,78997,3,Indian,Basic,Email,786,4903,0.86
+C490,26,Male,Bangalore,70611,3,Indian,Standard,Word-of-Mouth,500,4713,0.95
+C491,33,Female,Delhi,86235,4,Continental,Standard,Word-of-Mouth,636,2482,0.64
+C492,24,Male,Mumbai,80057,4,Asian,Premium,Search,456,5834,0.81
+C493,22,Female,Hyderabad,46239,5,Continental,Basic,Word-of-Mouth,790,4262,0.45
+C494,22,Male,Delhi,110661,3,Continental,Standard,Social Media,878,3104,0.43
+C495,29,Male,Delhi,90272,6,Continental,Standard,Social Media,665,4063,0.5
+C496,31,Female,Mumbai,106212,6,Indian,Basic,Social Media,629,4153,0.7
+C497,32,Male,Delhi,60398,3,Indian,Basic,Word-of-Mouth,393,2332,0.71
+C498,33,Male,Hyderabad,101503,3,Asian,Standard,Email,274,3348,0.44
+C499,34,Male,Pune,51638,3,Asian,Standard,Email,917,5524,0.3
+C500,33,Female,Delhi,51570,4,Continental,Standard,Email,322,2023,0.67
