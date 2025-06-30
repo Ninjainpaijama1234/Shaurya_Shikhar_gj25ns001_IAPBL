@@ -1,255 +1,240 @@
-# app.py  — v4.1 • 30-Jun-2025
-# ------------------------------------------------------------
-# ✦ Dual MICRO / MACRO dashboards
-# ✦ Executive styling (Plotly template “presentation” + light UI CSS)
-# ✦ Model picker (RF | DT | KNN)
-# ✦ 12-month, month-by-month revenue forecast for every city
-# ------------------------------------------------------------
+# app.py ---------------------------------------------------------------
+"""
+Streamlit multipage-style app (single file) providing:
 
+1. Detailed Explorer – every variable combination, deep-dive analytics.
+2. Executive Overview – KPI snapshot + 12-month revenue forecast.
+
+Author: Auto-generated for Shaurya (SP Jain MBA project).
+"""
+
+# ──────────────────────────────────────────────────────────────────────
+# Imports
+# ──────────────────────────────────────────────────────────────────────
 import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
-from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
+
+from sklearn.model_selection import GridSearchCV
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import r2_score, mean_squared_error
 
-# ------------------------------------------------------------
-# 0 ▸ Branding & Plotly theme
-# ------------------------------------------------------------
-st.set_page_config("IA-Shaurya Analytics", "📈", layout="wide")
-px.defaults.template = "presentation"
-st.markdown(
-    """
-    <style>
-        body {background:#F4F6F9;}
-        .sidebar .sidebar-content {background:linear-gradient(#003366,#004B8E); color:#fff;}
-        h1,h2,h3,h4 {color:#003366;}
-        .metric-label {font-size:0.85rem!important; color:#666;}
-        .dataframe {background:#fff; border-radius:0.5rem;}
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+# ──────────────────────────────────────────────────────────────────────
+# Configuration
+# ──────────────────────────────────────────────────────────────────────
+st.set_page_config(page_title="IA Dashboards", layout="wide")
+DATA_PATH = "IA_Shaurya_IAPBL.csv"          # keep file in the same folder
 
-# ------------------------------------------------------------
-# 1 ▸ Data loader
-# ------------------------------------------------------------
-@st.cache_data
-def load_data(path="IA_Shaurya_IAPBL.csv") -> pd.DataFrame:
-    return pd.read_csv(path)
+# ──────────────────────────────────────────────────────────────────────
+# Helper functions
+# ──────────────────────────────────────────────────────────────────────
+@st.cache_data(show_spinner=False)
+def load_data(path: str) -> pd.DataFrame:
+    """Read the CSV and apply minimal cleansing."""
+    df = pd.read_csv(path)
+    df.columns = [c.strip().replace(" ", "_") for c in df.columns]
+    return df
 
-df = load_data()
 
-# ------------------------------------------------------------
-# 2 ▸ Sidebar – global filters & model choice
-# ------------------------------------------------------------
-with st.sidebar:
-    st.image(
-        "https://img.icons8.com/external-becris-flat-becris/96/FFFFFF/external-analytics-seo-services-becris-flat-becris.png",
-        width=110,
-    )
-    st.header("🔍 GLOBAL FILTER")
-    city_f   = st.multiselect("City",   sorted(df["City"].unique()),
-                              default=sorted(df["City"].unique()))
-    gender_f = st.multiselect("Gender", df["Gender"].unique(),
-                              default=list(df["Gender"].unique()))
-    plan_f   = st.multiselect("Plan",   df["Subscription_Plan"].unique(),
-                              default=list(df["Subscription_Plan"].unique()))
-    cap      = st.slider("Monthly Income Ceiling",
-                         int(df["Monthly_Income"].min()),
-                         int(df["Monthly_Income"].max()),
-                         int(df["Monthly_Income"].max()))
-    st.divider()
-    st.subheader("🤖 FORECAST MODEL")
-    algo = st.radio("Algorithm",
-                    ["Random-Forest", "Decision-Tree", "K-Nearest-Neighbors"])
-    view = st.radio("Dashboard",
-                    ["🏢 Macro View + 12-Month Forecast", "🔬 Micro Explorer"])
-
-fdf = (
-    df.query(
-        "City in @city_f and Gender in @gender_f and "
-        "Subscription_Plan in @plan_f and Monthly_Income <= @cap"
-    )
-    .reset_index(drop=True)
-)
-
-# ------------------------------------------------------------
-# 3 ▸ Helper – train model & 12-month forecast
-# ------------------------------------------------------------
 @st.cache_resource(show_spinner=False)
-def model_and_forecast(data: pd.DataFrame, model_name: str, horizon: int = 12):
-    """Return fitted pipeline, city Now/Next DF, wide projection (M1…Mhorizon)."""
-    y = data["First_Month_Spend"]
-    X = data.drop(columns=["First_Month_Spend", "Customer_ID"])
+def train_models(df: pd.DataFrame):
+    """
+    Train K-NN, Decision-Tree, and Random-Forest on First_Month_Spend.
+    Returns (results_dict, best_model_name).
+    """
+    X = df.drop(columns=["First_Month_Spend"])
+    y = df["First_Month_Spend"]
 
-    cat_cols = X.select_dtypes("object").columns
-    num_cols = X.select_dtypes(exclude="object").columns
+    num_cols = X.select_dtypes(include="number").columns.tolist()
+    cat_cols = X.select_dtypes(exclude="number").columns.tolist()
 
     pre = ColumnTransformer(
-        [("cat", OneHotEncoder(handle_unknown="ignore"), cat_cols),
-         ("num", MinMaxScaler(), num_cols)]
+        [("num", StandardScaler(), num_cols),
+         ("cat", OneHotEncoder(handle_unknown="ignore"), cat_cols)]
     )
 
-    model = (
-        RandomForestRegressor(n_estimators=400, random_state=42)
-        if model_name == "Random-Forest"
-        else DecisionTreeRegressor(max_depth=8, random_state=42)
-        if model_name == "Decision-Tree"
-        else KNeighborsRegressor(n_neighbors=10, weights="distance")
+    models = {
+        "K-NN": KNeighborsRegressor(),
+        "Decision-Tree": DecisionTreeRegressor(random_state=42),
+        "Random-Forest": RandomForestRegressor(random_state=42)
+    }
+
+    params = {
+        "K-NN": {"model__n_neighbors": [3, 5, 7]},
+        "Decision-Tree": {"model__max_depth": [None, 5, 10]},
+        "Random-Forest": {"model__n_estimators": [100, 250],
+                          "model__max_depth": [None, 10]}
+    }
+
+    results = {}
+    for name, model in models.items():
+        pipe = Pipeline([("prep", pre), ("model", model)])
+        gs = GridSearchCV(pipe, params[name], cv=3, n_jobs=-1)
+        gs.fit(X, y)
+        y_hat = gs.predict(X)
+        results[name] = {
+            "best": gs.best_estimator_,
+            "R2": round(r2_score(y, y_hat), 3),
+            "RMSE": round(np.sqrt(mean_squared_error(y, y_hat)), 1)
+        }
+
+    best_name = max(results.keys(), key=lambda n: results[n]["R2"])
+    return results, best_name
+
+
+def forecast_city_revenue(df_raw: pd.DataFrame, est):
+    """Predict spend per customer, then roll-up a 12-month revenue trajectory by city."""
+    df = df_raw.copy()
+    X = df.drop(columns=["First_Month_Spend"])
+    df["Pred_Spend"] = est.predict(X)
+
+    for m in range(1, 13):
+        df[f"Month_{m}"] = df["Pred_Spend"] * (df["Renewal_Probability"] ** (m - 1))
+
+    city_table = (df.groupby("City")[ [f"Month_{m}" for m in range(1, 13)] ]
+                    .sum()
+                    .round(0)
+                    .reset_index())
+    return city_table
+
+# ──────────────────────────────────────────────────────────────────────
+# Load data
+# ──────────────────────────────────────────────────────────────────────
+df_master = load_data(DATA_PATH)
+
+# ──────────────────────────────────────────────────────────────────────
+# Sidebar – navigation & global filters
+# ──────────────────────────────────────────────────────────────────────
+st.sidebar.title("🚀 IA Dashboards")
+page = st.sidebar.radio("Choose a view:", ("Detailed Explorer", "Executive Overview"))
+
+st.sidebar.markdown("---")
+st.sidebar.header("🔍 Global Filters (Micro)")
+
+flt_df = df_master.copy()
+
+# Categorical filters
+cat_filters = ["Gender", "City", "Subscription_Plan",
+               "Preferred_Cuisine", "Marketing_Channel"]
+for col in cat_filters:
+    opts = st.sidebar.multiselect(col, flt_df[col].unique(), default=flt_df[col].unique())
+    flt_df = flt_df[flt_df[col].isin(opts)]
+
+# Age slider
+age_min, age_max = int(flt_df.Age.min()), int(flt_df.Age.max())
+age_range = st.sidebar.slider("Age Range", age_min, age_max, (age_min, age_max))
+flt_df = flt_df[flt_df.Age.between(age_range[0], age_range[1])]
+
+# ──────────────────────────────────────────────────────────────────────
+# Page 1 – Detailed Explorer
+# ──────────────────────────────────────────────────────────────────────
+if page == "Detailed Explorer":
+    st.title("📊 All-Combinations Data Explorer")
+    st.markdown(
+        "This interactive space lets analysts slice & dice every attribute, "
+        "uncovering granular patterns. Managerial takeaways precede each visual."
     )
 
-    pipe = Pipeline([("prep", pre), ("model", model)]).fit(X, y)
+    # KPI tiles
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Total Customers", f"{len(flt_df):,}")
+    c2.metric("Total First-Month Spend", f"₹{flt_df.First_Month_Spend.sum():,.0f}")
+    c3.metric("Avg Spend / Customer", f"₹{flt_df.First_Month_Spend.mean():,.0f}")
+    c4.metric("Avg Renewal Probability", f"{flt_df.Renewal_Probability.mean():.1%}")
 
-    # Forecast next month for each customer
-    next_rev = pipe.predict(X)
-    tmp = data.copy()
-    tmp["Next_Month"] = next_rev
-
-    city_now = (
-        tmp.groupby("City")
-        .agg(Current=("First_Month_Spend", "sum"), Next=("Next_Month", "sum"))
-        .reset_index()
+    # Treemap
+    st.markdown("#### Revenue Composition — City → Plan → Cuisine")
+    st.markdown(
+        "This tree diagram spotlights which product-city pairings deliver the greatest "
+        "initial revenue, guiding portfolio focus."
     )
-    city_now["Growth_%"] = (city_now["Next"] / city_now["Current"] - 1) * 100
+    fig_tree = px.treemap(
+        flt_df,
+        path=["City", "Subscription_Plan", "Preferred_Cuisine"],
+        values="First_Month_Spend"
+    )
+    st.plotly_chart(fig_tree, use_container_width=True)
 
-    # Build wide projection table
-    proj = city_now[["City"]].copy()
-    for m in range(1, horizon + 1):
-        proj[f"M{m}"] = city_now["Current"] * (1 + city_now["Growth_%"] / 100) ** m
+    # Dynamic two-variable explorer
+    st.markdown("---")
+    st.subheader("🔄 Compare any variables")
 
-    return pipe, city_now.round(0), proj.round(0)
+    num_cols = flt_df.select_dtypes(include="number").columns.tolist()
+    cat_cols = flt_df.select_dtypes(exclude="number").columns.tolist()
 
-# ------------------------------------------------------------
-# 4 ▸ MACRO VIEW + 12-month forecast
-# ------------------------------------------------------------
-if view.startswith("🏢"):
-    st.title("🏢 Macro Dashboard  |  12-Month City Forecast")
+    x_var = st.selectbox("X-axis", num_cols + cat_cols, index=0)
+    y_var = st.selectbox("Y-axis (numeric)", [c for c in num_cols if c != x_var], index=0)
+    color = st.selectbox("Colour / Facet", ["None"] + cat_cols)
 
-    # 4.1 Portfolio KPIs
-    k1, k2, k3 = st.columns(3)
-    k1.metric("Customers", f"{len(fdf):,}")
-    k2.metric("Avg Renewal", f"{fdf['Renewal_Probability'].mean():.2%}")
-    k3.metric("Median CAC (₹)",
-              f"{fdf['Customer_Acquisition_Cost'].median():,.0f}")
-
-    # 4.2 Model & projections
-    with st.spinner("Training model & generating forecast…"):
-        _, city_df, proj_wide = model_and_forecast(fdf, algo)
-
-    tot_cur = city_df["Current"].sum()
-    tot_next = city_df["Next"].sum()
-    growth = (tot_next / tot_cur - 1) * 100
-
-    g1, g2, g3 = st.columns(3)
-    g1.metric("Current Rev (₹)", f"{tot_cur:,.0f}")
-    g2.metric("Next-Month Rev (₹)", f"{tot_next:,.0f}")
-    g3.metric("Growth %", f"{growth:.1f}%")
-
-    # 4.3 Month-by-month long format & interactive chart
-    proj_long = (
-        proj_wide.melt(id_vars="City", var_name="Month", value_name="Revenue")
-        .assign(Month_Num=lambda d: d["Month"].str.extract(r"M(\d+)").astype(int))
-        .sort_values(["City", "Month_Num"])
+    st.markdown(
+        "**Interpretation tip:** Faceting reveals distributional nuances averages may hide."
     )
 
-    st.subheader(f"📈 12-Month Revenue Trajectory  ({algo})")
-    fig_line = px.line(
-        proj_long,
-        x="Month_Num",
-        y="Revenue",
-        color="City",
-        markers=True,
-        labels={"Month_Num": "Month (1-12)"},
-        title="Monthly Forecast per City",
-    )
-    st.plotly_chart(fig_line, use_container_width=True)
+    if color == "None":
+        fig = px.scatter(flt_df, x=x_var, y=y_var, trendline="ols")
+    else:
+        fig = px.box(flt_df, x=color, y=y_var, points="all")
+    st.plotly_chart(fig, use_container_width=True)
 
-    # 4.4 Current vs Month-1 bar
-    st.subheader("Current vs Month-1 Revenue")
-    st.plotly_chart(
-        px.bar(
-            city_df,
-            x="City",
-            y=["Current", "Next"],
-            barmode="group",
-            text_auto=".2s",
-            title="Current (blue) vs Month-1 Forecast (orange)",
-            color_discrete_sequence=["#1f77b4", "#ff7f0e"],
-        ),
-        use_container_width=True,
+    st.caption(
+        "Data refreshed & cached from CSV. Choose “Executive Overview” for the board-level summary."
     )
 
-    # 4.5 12-Month projection table + download
-    st.subheader("📅 12-Month Projection Table")
-    st.dataframe(
-        proj_wide.set_index("City"),
-        height=360,
-        use_container_width=True,
-    )
-
-    csv = proj_wide.to_csv(index=False).encode()
-    st.download_button(
-        "⬇ Download 12-Month Forecast CSV",
-        csv,
-        f"12M_city_forecast_{algo}.csv",
-        "text/csv",
-    )
-
-# ------------------------------------------------------------
-# 5 ▸ MICRO EXPLORER
-# ------------------------------------------------------------
+# ──────────────────────────────────────────────────────────────────────
+# Page 2 – Executive Overview
+# ──────────────────────────────────────────────────────────────────────
 else:
-    st.title("🔬 Micro Explorer")
-
-    num_cols = fdf.select_dtypes(exclude="object").columns
-    st.plotly_chart(
-        px.imshow(
-            fdf[num_cols].corr().round(2),
-            text_auto=True,
-            color_continuous_scale="Spectral",
-            title="Numeric Correlation Matrix",
-        ),
-        use_container_width=True,
+    st.title("🏢 Executive Overview & Revenue Forecast")
+    st.markdown(
+        "Concise, board-ready visuals focus on **impact**. Predictive analytics extend "
+        "the view 12 months ahead."
     )
 
-    st.subheader("Spend Distribution by Plan & Gender")
-    st.plotly_chart(
-        px.violin(
-            fdf,
-            x="Subscription_Plan",
-            y="First_Month_Spend",
-            color="Gender",
-            box=True,
-            points="all",
-        ),
-        use_container_width=True,
+    with st.spinner("Training predictive models – one-time per session…"):
+        res_dict, best = train_models(flt_df)
+        best_est = res_dict[best]["best"]
+
+    # Model performance metrics
+    m1, m2, m3 = st.columns(3)
+    m1.metric("Selected Model", best)
+    m2.metric("R² (in-sample)", res_dict[best]["R2"])
+    m3.metric("RMSE", res_dict[best]["RMSE"])
+
+    # Forecast table
+    st.markdown("---")
+    st.subheader("12-Month Revenue Forecast by City")
+    city_tbl = forecast_city_revenue(flt_df, best_est)
+    st.dataframe(city_tbl.style.format("₹{:,.0f}"), use_container_width=True)
+
+    st.markdown(
+        "**Reading guide:** Revenue decays each month by individual "
+        "`Renewal_Probability`, yielding a conservative yet realistic projection."
     )
 
-    st.subheader("City-Specific Drill-Down")
-    sel_city = st.selectbox("Select city:", sorted(fdf["City"].unique()))
-    sub = fdf[fdf["City"] == sel_city]
-    d1, d2, d3 = st.columns(3)
-    d1.metric("Customers", f"{len(sub):,}")
-    d2.metric("Median Spend (₹)", f"{sub['First_Month_Spend'].median():,.0f}")
-    d3.metric("Avg Renewal", f"{sub['Renewal_Probability'].mean():.2%}")
+    # Heatmap
+    fig_map = px.imshow(
+        city_tbl.set_index("City"),
+        aspect="auto",
+        labels=dict(color="₹"),
+        title="Heatmap — Revenue Trajectory (₹)"
+    )
+    st.plotly_chart(fig_map, use_container_width=True)
 
-    st.plotly_chart(
-        px.histogram(
-            sub,
-            x="First_Month_Spend",
-            nbins=20,
-            title=f"Spend Histogram — {sel_city}",
-        ),
-        use_container_width=True,
+    # Focus month bar chart
+    st.markdown("---")
+    st.subheader("Focus Month & City Comparison")
+    month_sel = st.slider("Select month", 1, 12, 1)
+    city_sel = st.multiselect(
+        "Cities", city_tbl.City.unique(), default=city_tbl.City.unique().tolist()
     )
 
-    st.subheader("Filtered Customer Table")
-    st.dataframe(fdf, use_container_width=True, height=350)
+    bar_df = city_tbl[city_tbl.City.isin(city_sel)][["City", f"Month_{month_sel}"]]
+    st.bar_chart(bar_df.set_index("City"))
 
-# ------------------------------------------------------------
-st.caption("© 2025 Shaurya Analytics | Streamlit + Plotly + scikit-learn")
+    st.caption("Forecasts cached — they retrain only if global filters change.")
